@@ -1,11 +1,17 @@
 # **Жизненные циклы View UIView UIViewController UIApplication**
 ### Какой метод жизненного цикла UIViewController вызывается при первом отображении представления на экране?
+loadView -> viewDidLoad -> viewWillAppear 
 ___
 
+
 ### В чем разница между viewDidLoad и viewWillAppear в UIViewController?
+https://habr.com/ru/articles/654517/
 ___
 
 ### Какие действия следует выполнять в методе viewWillLayoutSubviews?
+Вызывается, чтобы уведомить ViewController о том, что его view собирается разместить свои subviews.
+Этот метод вызывается каждый раз, когда frame изменяется, например, при повороте экрана или, когда он помечен как needing layout(требующий компоновки). Это первый шаг, на котором bounds(границы) view являются окончательными.
+Если вы не используете autoresizingMask или constraints, а размер view изменяется, вы, вероятно, захотите обновить subviews здесь.
 ___
 
 ### Как UIViewController отслеживает изменение ориентации устройства?
@@ -120,9 +126,11 @@ ___
 ___
 
 ### Как можно загрузить файл на сервер, используя URLSessionUploadTask?
+func uploadTask(with: URLRequest, from: Data) -> URLSessionUploadTask
 ___
 
 ### Как в URLSession использовать URLSessionDownloadTask для загрузки файлов и обработки прогресса загрузки?
+Download tasks directly write the server’s response data to a temporary file, providing your app with progress updates as data arrives from the server. When you use download tasks in background sessions, these downloads continue even when your app is in the suspended state or otherwise not running.
 ___
 
 ### Как можно обрабатывать многозадачность и продолжение передачи данных в фоновом режиме с помощью URLSession?
@@ -159,9 +167,11 @@ ___
 ___
 
 ### Как можно настроить Appearance для навигационной панели в UINavigationController?
+UINavigationBarAppearance
 ___
 
 ### Как Appearance влияет на элементы управления, такие как UIButton или UILabel?
+ UIButton.appearance().backgroundColor = .black
 ___
 
 ### Какие свойства можно настроить с помощью UIAppearance?
@@ -186,6 +196,8 @@ ___
 ___
 
 ### Как использовать UIAppearance для изменения внешнего вида UISearchBar?
+You can customize the appearance of search bars one at a time, or you can use the appearance proxy ([UISearchBar appearance]) to customize the appearance of all search bars in an app.
+In general, you should specify a value for the normal state to be used by other states which don’t have a custom value set. Similarly, when a property is dependent on the bar metrics (on iPhone, in landscape orientation bars have a different height from standard), you should specify a value for UIBarMetricsDefault.
 ___
 
 ### Как изменить внешний вид стандартных кнопок системы, таких как кнопки в UIAlertController?
